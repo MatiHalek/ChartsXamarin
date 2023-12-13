@@ -156,5 +156,10 @@ namespace GitMarmuzniak
             wykresKolowy.RotateTo(0, 2000, Easing.SinInOut);
             wykresKolowy.ScaleTo(1, 2000, Easing.SinInOut);
         }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new EditPage());
+        }
     }
 }

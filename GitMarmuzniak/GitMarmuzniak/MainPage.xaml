@@ -2,6 +2,9 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GitMarmuzniak.MainPage" Title="Wykresy">
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="Zmień dane" Clicked="ToolbarItem_Clicked"/>
+    </TabbedPage.ToolbarItems>
     <ContentPage Title="Słupkowy" Appearing="WykresSlupkowy_Appearing">
         <Grid x:Name="wykresSlupkowy"></Grid>
     </ContentPage>
@@ -12,7 +15,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid x:Name="wykresKolowy" VerticalOptions="Center" HorizontalOptions="Center"></Grid>
-            <StackLayout x:Name="wykresKolowyStackLayout">
+            <StackLayout x:Name="wykresKolowyStackLayout" Grid.Row="1">
                 
             </StackLayout>
         </Grid>
