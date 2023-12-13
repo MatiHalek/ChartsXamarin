@@ -6,16 +6,26 @@
         <ToolbarItem Text="Zmień dane" Clicked="ToolbarItem_Clicked"/>
     </TabbedPage.ToolbarItems>
     <ContentPage Title="Słupkowy" Appearing="WykresSlupkowy_Appearing">
-        <Grid x:Name="wykresSlupkowy"></Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label FontSize="17" HorizontalOptions="Center" x:Name="slupkowyLabel"/>
+            <Grid x:Name="wykresSlupkowy" Grid.Row="1"></Grid>
+        </Grid>
+        
     </ContentPage>
     <ContentPage Title="Kołowy" Appearing="WykresKolowy_Appearing">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid x:Name="wykresKolowy" VerticalOptions="Center" HorizontalOptions="Center"></Grid>
-            <StackLayout x:Name="wykresKolowyStackLayout" Grid.Row="1">
+            <Label FontSize="17" HorizontalOptions="Center" x:Name="kolowyLabel"/>
+            <Grid x:Name="wykresKolowy" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1"></Grid>
+            <StackLayout x:Name="wykresKolowyStackLayout" Grid.Row="2" Padding="5">
                 
             </StackLayout>
         </Grid>

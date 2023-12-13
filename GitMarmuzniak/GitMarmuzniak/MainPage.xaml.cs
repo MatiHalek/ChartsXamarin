@@ -12,6 +12,7 @@ namespace GitMarmuzniak
     public partial class MainPage : TabbedPage
     {
         public static List<ChartData> ChartData {  get; set; }
+        public static string Title = "Przykadowy wykres";
         private Color[] Colors = { Color.Red, Color.Blue, Color.Orange, Color.Green, Color.Purple, Color.Gray};
         private Brush[] Brushes = { Brush.Red, Brush.Blue, Brush.Orange, Brush.Green, Brush.Purple, Brush.Gray};
         public MainPage()
@@ -75,6 +76,7 @@ namespace GitMarmuzniak
                     stackLayout.ScaleYTo(1, 2000, Easing.SinInOut);
                 }
             }
+            slupkowyLabel.Text = Title;
         }
         private Point CenterPoint = new Point(100, 100);
         private int Radius = 100;
@@ -155,6 +157,7 @@ namespace GitMarmuzniak
             }
             wykresKolowy.RotateTo(0, 2000, Easing.SinInOut);
             wykresKolowy.ScaleTo(1, 2000, Easing.SinInOut);
+            kolowyLabel.Text = Title;
         }
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)

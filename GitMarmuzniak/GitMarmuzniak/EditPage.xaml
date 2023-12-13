@@ -34,7 +34,7 @@
                 <Entry Placeholder="Dana 6" Grid.Row="5" Grid.Column="1"/>
                 <Entry Placeholder="Dana 7" Grid.Row="6" Grid.Column="1"/>
             </Grid>
-            <Button Text="Zatwierdź" Clicked="Button_Clicked"/>
+            <Button Text="Zatwierdź" Clicked="Button_Clicked" BackgroundColor="Blue" TextColor="White" Margin="30" CornerRadius="10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

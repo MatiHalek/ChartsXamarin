@@ -21,6 +21,7 @@ namespace GitMarmuzniak
                 (grid.Children[i] as Entry).Text = MainPage.ChartData[i].Name;
                 (grid.Children[i + 7] as Entry).Text = MainPage.ChartData[i].Value.ToString();
             }
+            titleEntry.Text = MainPage.Title;
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -32,7 +33,14 @@ namespace GitMarmuzniak
                 if (!string.IsNullOrWhiteSpace((grid.Children[i] as Entry).Text) && !string.IsNullOrWhiteSpace((grid.Children[i + 7] as Entry).Text))
                     MainPage.ChartData.Add(new ChartData((grid.Children[i] as Entry).Text, double.Parse((grid.Children[i + 7] as Entry).Text)));
             }
-            Navigation.PopAsync();
+            if (string.IsNullOrWhiteSpace(titleEntry.Text))
+                DisplayAlert("Błąd", "Podaj poprawny tytuł", "OK");
+            else
+            {
+                MainPage.Title = titleEntry.Text;
+                Navigation.PopAsync();   
+            }
+            
         }
     }
 }
