@@ -123,7 +123,38 @@ namespace GitMarmuzniak
 
         private void WykresKolowy_Appearing(object sender, EventArgs e)
         {
-
+            wykresKolowy.Children.Clear();
+            wykresKolowyStackLayout.Children.Clear();
+            wykresKolowy.Rotation = -90;
+            wykresKolowy.Scale = 0;
+            double sum = 0;
+            foreach (var item in ChartData)
+                sum += item.Value;
+            for(int i = 0; i < ChartData.Count; i++)
+            {
+                wykresKolowy.Children.Add(DrawArc(ChartData[i].Value / sum * 360, Brushes[i]));
+                StackLayout stackLayout = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal
+                };
+                BoxView boxView = new BoxView
+                {
+                    WidthRequest = 20,
+                    HeightRequest = 20,
+                    BackgroundColor = Colors[i],
+                    Margin = new Thickness(5)
+                };
+                Label label = new Label
+                {
+                    FontSize = 17,
+                    Text = ChartData[i].Name + " - " + ChartData[i].Value + " (" + (ChartData[i].Value / sum * 100).ToString("0.00") + "%)"
+                };
+                stackLayout.Children.Add(label);
+                stackLayout.Children.Add(boxView);
+                wykresKolowyStackLayout.Children.Add(stackLayout);
+            }
+            wykresKolowy.RotateTo(0, 2000, Easing.SinInOut);
+            wykresKolowy.ScaleTo(1, 2000, Easing.SinInOut);
         }
     }
 }
