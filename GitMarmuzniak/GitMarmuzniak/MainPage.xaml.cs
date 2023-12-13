@@ -76,6 +76,50 @@ namespace GitMarmuzniak
                 }
             }
         }
+        private Point CenterPoint = new Point(100, 100);
+        private int Radius = 100;
+        private double CurrentAngle = 0;
+        private Xamarin.Forms.Shapes.Path DrawArc(double degreeAngle, Brush color)
+        {
+            double startPointX = Math.Cos(CurrentAngle) * Radius + CenterPoint.X;
+            double startPointY = Math.Sin(CurrentAngle) * Radius + CenterPoint.Y;
+            CurrentAngle += degreeAngle * (Math.PI / 180);
+            double endPointX = Math.Cos(CurrentAngle) * Radius + CenterPoint.X;
+            double endPointY = Math.Sin(CurrentAngle) * Radius + CenterPoint.Y;
+            Point startPoint = new Point(startPointX, startPointY);
+            Point endPoint = new Point(endPointX, endPointY);
+            LineSegment line1 = new LineSegment(startPoint);
+            LineSegment line2 = new LineSegment(CenterPoint);
+            ArcSegment arcSegment = new ArcSegment
+            {
+                SweepDirection = SweepDirection.Clockwise,
+                RotationAngle = degreeAngle,
+                Size = new Size(Radius, Radius),
+                Point = endPoint,
+                IsLargeArc = degreeAngle > 180
+            };
+            PathFigure pathFigure = new PathFigure
+            {
+                StartPoint = CenterPoint
+            };
+            pathFigure.Segments.Add(line1);
+            pathFigure.Segments.Add(arcSegment);
+            pathFigure.Segments.Add(line2);
+            PathFigureCollection pathFigures = new PathFigureCollection
+            {
+                pathFigure
+            };
+            PathGeometry pathGeometry = new PathGeometry
+            {
+                Figures = pathFigures,
+            };
+            Xamarin.Forms.Shapes.Path path = new Xamarin.Forms.Shapes.Path
+            {
+                Data = pathGeometry,
+                Fill = color
+            };
+            return path;
+        }
 
         private void WykresKolowy_Appearing(object sender, EventArgs e)
         {
